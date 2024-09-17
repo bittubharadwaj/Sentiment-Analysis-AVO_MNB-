@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Product Reviews Sentiment Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amazon+Ember&display=swap" rel="stylesheet">
+    <style>
+        /* Add your CSS styles here */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+        :root{
+            --primary-color:#020617;
+            --seconday-color:#0f172a;
+            --timepass-color:#10b981;
+        }
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            
+            background-color: var(--seconday-color);
+        }
+        .container {
+            max-width: 1000px;
+            margin:  auto;
+            padding: 20px 20px;
+            padding-bottom: 1rem;
+            background-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 20px;
+            bottom: auto;
+            border-style: double;
+            border-color: var(--timepass-color) ;
+        }
+        h1 {
+            font-size: 28px;
+            color:var(--timepass-color);
+            margin-bottom: 20px;
+            padding-left: 18px;
+        }
+        textarea {
+            background-color: #bfdbfe;
+            width: 100%;
+            height: 150px;
+            padding: 10px -25px;
+            margin-bottom: 20px;
+            border: 2px solid ;
+            border-radius: 5px;
+            resize: none;
+            font-size: 16px;
+            
+        }
+        button {
+            
+            padding: 10px 10px;
+            background-color: var(--timepass-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #22d3ee;
+        }
+        #result {
+            
+            text-align: center;
+            margin-top: 20px;
+            margin-right: 7px;
+            padding: 1rem 1rem 1rem 1rem;
+            border-radius: 5px;
+            font-size: 18px;
+            color: var(--timepass-color);
+            
+        }
+        .positive {
+            color: #84cc16;
+        }
+        .negative {
+            color: #e11d48;
+        }
+        .dataset-link {
+            text-align: right;
+            font-size: 14px;
+            color: var(--timepass-color);
+            text-decoration: none;
+            margin-top: 20px;
+            display: block;
+            padding-right: 20px;
+        }
+        .navigation{
+        font-family: 'Poppins', sans-serif;
+        font-size: x-large;   
+        background-color:var(--primary-color);
+        color:var(--timepass-color);
+        border-radius:0rem 0rem 0rem 1rem;
+        padding:1rem;
+        text-align: left;
+        border-radius: 0 0  0 25px  ;
+        padding: 1rem;
+    }
+    .footer{
+    background-color: var(--primary-color);
+    border-top-right-radius: 1rem;
+    margin:auto;
+    padding-bottom: none;
+    }   
+    .list-inline{
+    display:inline;
+    padding:0rem 1rem;
+    }
+    .footer .list-bullet{
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: xx-small;
+    
+    
+    }
+    .button{
+    color: black;
+    text-shadow: #0f172a;
+    }
+    .menu{
+        text-align: right;
+    }
+    .container1{
+        padding: 2rem 1rem;
+
+    }
+    .button-container{
+        text-align: right;
+        padding-right: 16px;
+        padding-top: 1rem;
+        border-radius: 5px;
+    }
+    ::placeholder {
+  color: black;
+  opacity: 1; /* Firefox */
+    }
+    .box{
+        padding: 1rem 1rem 1rem 1rem;
+        max-width: 1080px;
+        margin:auto;
+    }
+    .text{
+        padding-left: 1rem;
+    }
+    .logo{
+        max-width: 70px;
+    }
+    .img{
+        height:30px;
+        width: 30px;
+        padding-top: 1rem;
+        padding-left: 20px;
+    }
+    .a{
+        color:var(--timepass-color);
+        text-decoration: none;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navigation container1">
+        
+        <strong class="text">Amazon Product Reviews Sentiment Analysis</strong>
+    </nav>
+    <div class="box">
+        <h1></h1>
+        <div class="container">
+            <textarea id="reviewInput" placeholder="Enter your Amazon product review here..."></textarea>
+    </div>
+        <div class="button-container"> 
+            <button class="button" onclick="analyzeSentiment()">Analyze Sentiment</button>
+        </div>
+        <div id="result"></div>
+        <a href="https://yourdatasetlink.com" class="dataset-link" target="_blank">View Data Sets</a>
+    </div>
+    <footer class="footer container1">
+        <ul class="list-bullet dataset-link">
+            <li class="list-inline logo">
+                <a  href="https://www.google.com/search?q=linkedin&rlz=1C1RXQR_enIN1031IN1031&oq=linked&gs_lcrp=EgZjaHJvbWUqDggAEEUYJxg7GIAEGIoFMg4IABBFGCcYOxiABBiKBTIGCAEQRRg5MgYIAhBFGEAyBggDEAUYQDIGCAQQRRg8MgYIBRBFGDwyBggGEEUYPDIGCAcQRRg8qAIAsAIA&sourceid=chrome&ie=UTF-8">
+                    <img class="img" padding-top="1rem" src="linkedin.svg.png" alt="LinkedIn"></a>
+            </li>
+            <li class="list-inline">
+                <a class="a" href="">K Bharthwaj</a>
+            </li>
+            <li class="list-inline">
+                <a class="a" href="">K Rahul</a>
+            </li>
+            <li class="list-inline">
+                <a class="a" href="https://www.linkedin.com/in/koleti-sathwik/">K Sathwik</a></li>
+                <li class="list-inline">
+                    <a class="a" href="">A prasen</a>
+                </li>
+        </ul>
+        
+        
+       
+        
+    </footer>
+
+    <script>
+        function analyzeSentiment() {
+            var reviewText = document.getElementById("reviewInput").value;
+            var sentiment = getSentiment(reviewText);
+            var resultElement = document.getElementById("result");
+            resultElement.innerHTML = "<strong>Sentiment:</strong> " + 
+                                       "<span class='" + sentiment + "'>" + sentiment.toUpperCase() + "</span>";
+        }
+
+        function getSentiment(text) {
+            var sentiments = ["positive", "neutral", "negative"];
+            return sentiments[Math.floor(Math.random() * sentiments.length)];
+        }
+    </script>
+</body>
+</html>
